@@ -4,7 +4,7 @@ const sharp = require('sharp');
 const { S3Client, PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
 const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
 const { DynamoDBDocumentClient, ScanCommand, PutCommand, GetCommand, DeleteCommand } = require('@aws-sdk/lib-dynamodb');
-const { v4: uuidv4 } = require('uuid');
+const { randomUUID } = require('crypto');
 const path = require('path');
 const fs = require('fs');
 
@@ -49,7 +49,7 @@ app.get('/about', (req, res) => {
 app.post('/flicks', upload.single('image'), async (req, res) => {
   const { title, description, tags } = req.body;
   const file = req.file;
-  const eib = uuidv4();
+  const eib = randomUUID();
 
   try {
     // Generate thumbnail using sharp
