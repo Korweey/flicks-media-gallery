@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload New Flick – Flicks Media Gallery</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; }
+
+    /* NAV */
+    nav {
+      background: #1e1b4b;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-left { display: flex; align-items: center; gap: 30px; }
+    .nav-brand { color: white; font-size: 18px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+    .nav-brand .icon { background: #7c3aed; padding: 4px 8px; border-radius: 6px; font-size: 14px; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { color: #c4b5fd; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 4px; }
+    .nav-links a:hover { color: white; }
+    .btn-back-nav {
+      background: transparent;
+      color: #c4b5fd;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      border: 1px solid #4c3a8a;
+    }
+    .btn-back-nav:hover { background: #2d2a6e; color: white; }
+
+    /* FORM */
+    .container { max-width: 620px; margin: 40px auto; padding: 0 24px; }
+
+    .page-heading { margin-bottom: 20px; }
+    .page-heading h1 { font-size: 22px; color: #111; font-weight: bold; }
+    .page-heading p { color: #888; font-size: 13px; margin-top: 4px; }
+
+    .form-card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      border-top: 4px solid #7c3aed;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+    }
+    label:first-of-type { margin-top: 0; }
+
+    input[type="text"],
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border 0.2s;
+      color: #333;
+    }
+    input[type="text"]:focus,
+    textarea:focus { border-color: #7c3aed; outline: none; box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .hint { font-size: 12px; color: #aaa; margin-top: 4px; }
+
+    .btn-row { display: flex; gap: 12px; margin-top: 28px; }
+    .btn-submit {
+      background: #7c3aed;
+      color: white;
+      padding: 11px 28px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .btn-submit:hover { background: #6d28d9; }
+    .btn-cancel {
+      background: white;
+      color: #555;
+      padding: 11px 22px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn-cancel:hover { background: #f5f5f5; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      font-size: 12px;
+      margin-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    footer strong { color: #333; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <div class="nav-brand"><span class="icon">🎬</span> Flicks</div>
+    <div class="nav-links">
+      <a href="/">🏠 Home</a>
+      <a href="/new" style="color:white;">➕ New Flick</a>
+      <a href="/about">ℹ️ About</a>
+    </div>
+  </div>
+  <a href="/" class="btn-back-nav">← Back to Gallery</a>
+</nav>
+
+<!-- FORM -->
+<div class="container">
+  <div class="page-heading">
+    <h1>📤 Upload a New Flick</h1>
+    <p>Fill in the details and choose an image to add to your gallery</p>
+  </div>
+
+  <div class="form-card">
+    <form method="POST" action="/flicks" enctype="multipart/form-data">
+
+      <label>Title</label>
+      <input type="text" name="title" placeholder="e.g. Beautiful Sunset" required>
+
+      <label>Description</label>
+      <textarea name="description" placeholder="e.g. Captured at the beach during golden hour" required></textarea>
+
+      <label>Tags <span style="color:#aaa;font-weight:normal">(comma separated)</span></label>
+      <input type="text" name="tags" placeholder="e.g. nature, travel, sunset">
+      <div class="hint">Optional — helps with filtering and searching</div>
+
+      <label>Image File</label>
+      <input type="file" name="image" accept="image/*" required>
+      <div class="hint">Supported: JPG, PNG, GIF, WebP</div>
+
+      <div class="btn-row">
+        <button type="submit" class="btn-submit">⬆ Upload Flick</button>
+        <a href="/" class="btn-cancel">← Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 Flicks Media Gallery &mdash;
+  Cloud Architecture Assignment &mdash;
+  <strong>Qawiyy Rabiu (N10038749)</strong>
+</footer>
+
+</body>
+</html>

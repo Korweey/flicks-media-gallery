@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About – Flicks Media Gallery</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; }
+
+    /* NAV */
+    nav {
+      background: #1e1b4b;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-left { display: flex; align-items: center; gap: 30px; }
+    .nav-brand { color: white; font-size: 18px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+    .nav-brand .icon { background: #7c3aed; padding: 4px 8px; border-radius: 6px; font-size: 14px; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { color: #c4b5fd; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 4px; }
+    .nav-links a:hover { color: white; }
+    .nav-links a.active { color: white; }
+    .btn-new-nav {
+      background: #7c3aed;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .btn-new-nav:hover { background: #6d28d9; }
+
+    /* CONTENT */
+    .container { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+
+    .about-card {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      border-top: 4px solid #7c3aed;
+    }
+
+    .about-card h1 { font-size: 24px; color: #111; margin-bottom: 6px; }
+    .about-card .subtitle { color: #888; font-size: 13px; margin-bottom: 32px; }
+
+    .section { margin-bottom: 28px; }
+    .section h2 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #7c3aed;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #ede9fe;
+    }
+    .section p { color: #444; font-size: 14px; line-height: 1.7; }
+
+    .info-row { display: flex; gap: 8px; margin-bottom: 6px; align-items: center; }
+    .info-label { font-weight: 600; color: #333; font-size: 14px; min-width: 140px; }
+    .info-value { color: #555; font-size: 14px; }
+
+    .service-list, .feature-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 10px;
+    }
+    .service-list li, .feature-list li {
+      background: #f5f3ff;
+      border: 1px solid #ede9fe;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #4c1d95;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 28px;
+      background: #7c3aed;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .btn-back:hover { background: #6d28d9; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      font-size: 12px;
+      margin-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    footer strong { color: #333; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <div class="nav-brand"><span class="icon">🎬</span> Flicks</div>
+    <div class="nav-links">
+      <a href="/">🏠 Home</a>
+      <a href="/new">➕ New Flick</a>
+      <a href="/about" class="active">ℹ️ About</a>
+    </div>
+  </div>
+  <a href="/new" class="btn-new-nav">+ New Flick</a>
+</nav>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="about-card">
+
+    <h1>🎬 Flicks Media Gallery</h1>
+    <p class="subtitle">A cloud-powered media management application — Cloud Architecture Assignment</p>
+
+    <div class="section">
+      <h2>Student Information</h2>
+      <div class="info-row">
+        <span class="info-label">Name</span>
+        <span class="info-value">Qawiyy Rabiu</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Student Number</span>
+        <span class="info-value">N10038749</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Program</span>
+        <span class="info-value">Cloud Computing — Humber Polytechnic</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Project Description</h2>
+      <p>
+        Flicks Media Gallery is a cloud-native web application built with Node.js and Express.
+        Users can upload images with a title, description, and tags. Images are processed
+        (thumbnail generated with Sharp), stored in Amazon S3, and metadata is persisted
+        in Amazon DynamoDB. The gallery displays all uploaded flicks in a responsive card
+        layout and supports deletion of individual items.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>AWS Services Used</h2>
+      <ul class="service-list">
+        <li>☁️ Amazon S3 — Image &amp; Thumbnail Storage</li>
+        <li>🗄️ Amazon DynamoDB — Metadata Storage</li>
+        <li>🖥️ Amazon EC2 — Application Hosting</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li>📤 Upload images with metadata</li>
+        <li>🖼️ Auto-generate 100×100 thumbnails</li>
+        <li>🏷️ Tag-based organisation</li>
+        <li>📋 Responsive card gallery</li>
+        <li>🗑️ Delete flicks (S3 + DynamoDB)</li>
+        <li>☁️ Full AWS SDK v3 integration</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Technology Stack</h2>
+      <ul class="service-list">
+        <li>🟢 Node.js + Express</li>
+        <li>📄 EJS Templating</li>
+        <li>📦 AWS SDK v3</li>
+        <li>🖼️ Sharp (image processing)</li>
+        <li>📁 Multer (file uploads)</li>
+        <li>🔑 UUID (unique IDs)</li>
+      </ul>
+    </div>
+
+    <a href="/" class="btn-back">← Back to Gallery</a>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 Flicks Media Gallery &mdash;
+  Cloud Architecture Assignment &mdash;
+  <strong>Qawiyy Rabiu (N10038749)</strong>
+</footer>
+
+</body>
+</html>

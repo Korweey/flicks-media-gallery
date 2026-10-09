@@ -1,0 +1,23 @@
+{
+  "name": "flicks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1074.0",
+    "@aws-sdk/lib-dynamodb": "^3.1074.0",
+    "aws-sdk": "^2.1693.0",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "multer": "^2.2.0",
+    "sharp": "^0.35.2",
+    "uuid": "^8.3.2"
+  },
+  "description": ""
+}

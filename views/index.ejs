@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flicks Media Gallery</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; }
+
+    /* NAV */
+    nav {
+      background: #1e1b4b;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-left { display: flex; align-items: center; gap: 30px; }
+    .nav-brand { color: white; font-size: 18px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+    .nav-brand .icon { background: #7c3aed; padding: 4px 8px; border-radius: 6px; font-size: 14px; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { color: #c4b5fd; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 4px; }
+    .nav-links a:hover { color: white; }
+    .nav-links a.active { color: white; }
+    .btn-new-nav {
+      background: #7c3aed;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .btn-new-nav:hover { background: #6d28d9; }
+
+    /* HERO */
+    .hero {
+      background: white;
+      padding: 20px 24px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hero-title { font-size: 22px; font-weight: bold; color: #111; }
+    .hero-title span { font-size: 20px; }
+    .hero-sub { color: #888; font-size: 13px; margin-top: 4px; }
+    .search-box {
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-size: 13px;
+      width: 280px;
+      outline: none;
+    }
+    .search-box:focus { border-color: #7c3aed; }
+
+    /* STATS */
+    .container { max-width: 1100px; margin: 24px auto; padding: 0 24px; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .stat-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .stat-icon.purple { background: #ede9fe; }
+    .stat-icon.green { background: #d1fae5; }
+    .stat-icon.blue { background: #dbeafe; }
+    .stat-icon.orange { background: #ffedd5; }
+    .stat-num { font-size: 22px; font-weight: bold; color: #111; }
+    .stat-label { font-size: 12px; color: #888; }
+
+    /* GRID */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .section-title { font-size: 16px; font-weight: bold; color: #333; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: transform 0.2s;
+      position: relative;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+    .card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+    .card-body { padding: 14px; }
+    .card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .card-title { font-weight: bold; color: #111; font-size: 15px; }
+    .tag-pill {
+      background: #ede9fe;
+      color: #7c3aed;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+    .card-desc { color: #555; font-size: 13px; margin-bottom: 10px; }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-date { font-size: 12px; color: #aaa; }
+    .btn-del {
+      background: #fee2e2;
+      color: #dc2626;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-del:hover { background: #fecaca; }
+
+    /* PAGINATION STYLE */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 30px;
+    }
+    .page-btn {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .page-btn.active { background: #7c3aed; color: white; border-color: #7c3aed; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      font-size: 12px;
+      margin-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    footer strong { color: #333; }
+
+    .empty {
+      text-align: center;
+      padding: 60px;
+      background: white;
+      border-radius: 12px;
+      color: #888;
+      grid-column: span 3;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <div class="nav-brand"><span class="icon">🎬</span> Flicks</div>
+    <div class="nav-links">
+      <a href="/" class="active">🏠 Home</a>
+      <a href="/new">➕ New Flick</a>
+      <a href="/about">ℹ️ About</a>
+    </div>
+  </div>
+  <a href="/new" class="btn-new-nav">+ New Flick</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-title">My Flicks 🎬</div>
+    <div class="hero-sub">Manage and showcase your favourite moments</div>
+  </div>
+  <input class="search-box" type="text" placeholder="🔍 Search flicks by title, description or tags...">
+</div>
+
+<div class="container">
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-icon purple">🎬</div>
+      <div><div class="stat-num"><%= flicks.length %></div><div class="stat-label">Total Flicks</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green">🖼️</div>
+      <div><div class="stat-num"><%= flicks.length %></div><div class="stat-label">Total Images</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon blue">🏷️</div>
+      <div><div class="stat-num"><%= flicks.reduce((a,f) => a + (f.tags ? f.tags.split(',').length : 0), 0) %></div><div class="stat-label">Total Tags</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon orange">📅</div>
+      <div><div class="stat-num">Today</div><div class="stat-label">Last Updated</div></div>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+    <% if (flicks.length === 0) { %>
+      <div class="empty">No flicks yet. <a href="/new">Upload your first one!</a></div>
+    <% } %>
+    <% flicks.forEach(function(flick, i) { %>
+      <div class="card">
+        <span class="badge">#<%= i+1 %></span>
+        <img src="<%= flick.imageUrl %>" alt="<%= flick.title %>">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title"><%= flick.title %></span>
+            <span class="tag-pill"><%= (flick.tags && flick.tags.trim()) ? flick.tags.split(',')[0].trim() : 'untagged' %></span>
+          </div>
+          <div class="card-desc"><%= flick.description %></div>
+          <div class="card-footer">
+            <span class="card-date">📅 <%= flick.createdAt ? new Date(flick.createdAt).toLocaleDateString('en-CA') : 'N/A' %></span>
+            <form method="POST" action="/flicks/<%= flick.EIB %>/delete"
+              onsubmit="return confirm('Delete this flick?')">
+              <button type="submit" class="btn-del">🗑 Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination">
+    <button class="page-btn">‹</button>
+    <button class="page-btn active">1</button>
+    <button class="page-btn">›</button>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 Flicks Media Gallery &mdash;
+  Cloud Architecture Assignment &mdash;
+  <strong>Qawiyy Rabiu (N10038749)</strong>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+node_modules/
+uploads/
+app.log
+*.log
+.env
+
+# Editor backup files
+*.save
+*.save.1
+*.backup
+*.before-card-layout
+*.ejsy
+
+# OS
+.DS_Store
+Thumbs.db
